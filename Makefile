@@ -26,3 +26,7 @@ check-format:
 .PHONY: check
 check: check-format lint
 
+.PHONY: start
+start:
+	@go run cmd/manager/main.go
+

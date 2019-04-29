@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -f "$(go env GOBIN)"/*-gen
+
+$(dirname $0)/../vendor/k8s.io/code-generator/generate-groups.sh \
+    deepcopy,defaulter \
+    github.com/adracus/kubeception/pkg/apis \
+    github.com/adracus/kubeception/pkg/apis \
+    kubeception:v1alpha1

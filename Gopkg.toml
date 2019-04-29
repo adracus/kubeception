@@ -44,7 +44,7 @@ required = [
   version = "1.2.0"
 
 [prune]
-  # unused-packages = true
+  unused-packages = true
   go-tests = true
   non-go = true
 
