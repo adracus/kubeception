@@ -649,7 +649,7 @@
   revision = "c5d3b0f4bee0a2c36e3f715a6b15dcc231c64adc"
 
 [[projects]]
-  digest = "1:f5a8e681c3790f808dae34c62c2864d6bafdf51ad291ff72e8591bcfddc93d42"
+  digest = "1:b95ba19e0bc4ff7899ad62286ae45405179b7f53bf15af65ccf513284755839f"
   name = "sigs.k8s.io/cluster-api"
   packages = [
     "pkg/apis",
@@ -658,6 +658,7 @@
     "pkg/controller",
     "pkg/controller/cluster",
     "pkg/controller/error",
+    "pkg/controller/machine",
     "pkg/controller/machinedeployment",
     "pkg/controller/machinedeployment/util",
     "pkg/controller/machineset",
@@ -733,6 +734,8 @@
     "k8s.io/apimachinery/pkg/util/intstr",
     "k8s.io/apimachinery/pkg/util/runtime",
     "k8s.io/apimachinery/pkg/util/sets",
+    "k8s.io/client-go/tools/clientcmd",
+    "k8s.io/client-go/tools/clientcmd/api",
     "k8s.io/code-generator/cmd/client-gen",
     "k8s.io/code-generator/cmd/conversion-gen",
     "k8s.io/code-generator/cmd/deepcopy-gen",
@@ -744,10 +747,12 @@
     "sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1",
     "sigs.k8s.io/cluster-api/pkg/controller",
     "sigs.k8s.io/cluster-api/pkg/controller/cluster",
+    "sigs.k8s.io/cluster-api/pkg/controller/machine",
     "sigs.k8s.io/controller-runtime",
     "sigs.k8s.io/controller-runtime/pkg/client",
     "sigs.k8s.io/controller-runtime/pkg/client/config",
     "sigs.k8s.io/controller-runtime/pkg/manager",
+    "sigs.k8s.io/controller-runtime/pkg/runtime/inject",
     "sigs.k8s.io/controller-runtime/pkg/runtime/log",
     "sigs.k8s.io/controller-runtime/pkg/runtime/signals",
   ]

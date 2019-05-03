@@ -2,6 +2,8 @@ package util
 
 import (
 	"context"
+	"fmt"
+	"github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/meta"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -18,6 +20,10 @@ func finalizersAndAccessorOf(obj runtime.Object) (sets.String, metav1.Object, er
 	}
 
 	return sets.NewString(accessor.GetFinalizers()...), accessor, nil
+}
+
+func KubernetesImageForConfig(config *v1alpha1.ClusterConfig) string {
+	return fmt.Sprintf("k8s.gcr.io/hyperkube:%s", config.KubernetesVersion)
 }
 
 // HasFinalizer checks if the given object has a finalizer with the given name.

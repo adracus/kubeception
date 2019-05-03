@@ -8,14 +8,16 @@ import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 type ClusterConfig struct {
 	metav1.TypeMeta `json:",inline"`
 
-	ControlPlane ControlPlane `json:"controlPlane"`
+	ControlPlane      ControlPlane `json:"controlPlane"`
+	KubernetesVersion string       `json:"kubernetesVersion"`
 }
 
 // ControlPlane is the specification of a cluster control plane.
 type ControlPlane struct {
-	ETCD                  ETCD                  `json:"etcd"`
-	APIServer             APIServer             `json:"apiServer"`
-	KubeControllerManager KubeControllerManager `json:"kubeControllerManager"`
+	ETCD              ETCD               `json:"etcd"`
+	APIServer         APIServer          `json:"apiServer"`
+	ControllerManager *ControllerManager `json:"controllerManager,omitempty"`
+	Scheduler         *Scheduler         `json:"scheduler,omitempty"`
 }
 
 // ETCD carries etcd configuration.
@@ -26,6 +28,17 @@ type ETCD struct {
 type APIServer struct {
 }
 
-// KubeControllerManager carries Kubernetes controller manager configuration.
-type KubeControllerManager struct {
+// ControllerManager carries Kubernetes controller manager configuration.
+type ControllerManager struct {
+}
+
+// ControllerManager carries Kubernetes scheduler configuration.
+type Scheduler struct {
+}
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// ClusterConfig is the kubeception machine configuration.
+type MachineConfig struct {
+	metav1.TypeMeta `json:",inline"`
 }

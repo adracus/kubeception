@@ -4,7 +4,15 @@ metadata:
   name: cluster-example
 spec:
   providerSpec:
-    value: {}
+    value:
+      apiVersion: kubeception.io/v1alpha1
+      kind: ClusterConfig
+      kubernetesVersion: v1.13.5
+      controlPlane:
+        etcd: {}
+        apiServer: {}
+        controllerManager: {}
+        scheduler: {}
   clusterNetwork:
     services:
       cidrBlocks:
