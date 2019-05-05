@@ -99,7 +99,8 @@ func (a *actuator) Create(ctx context.Context, cluster *clusterv1alpha1.Cluster,
 					Labels: labels,
 				},
 				Spec: corev1.PodSpec{
-					AutomountServiceAccountToken: pointers.Bool(false),
+					TerminationGracePeriodSeconds: pointers.Int64(10),
+					AutomountServiceAccountToken:  pointers.Bool(false),
 					Containers: []corev1.Container{
 						{
 							Name:  "kubelet",
@@ -135,7 +136,6 @@ func (a *actuator) Create(ctx context.Context, cluster *clusterv1alpha1.Cluster,
 							},
 							Ports: []corev1.ContainerPort{
 								{
-									HostPort:      20250,
 									ContainerPort: 20250,
 								},
 							},
