@@ -1,3 +1,6 @@
+.PHONY: all
+all: check test install
+
 .PHONY: install-requirements
 install-requirements:
 	@cd $$(mktemp -d); GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.16.0; cd -
@@ -16,7 +19,7 @@ test:
 
 .PHONY: lint
 lint:
-	@golangci-ling run
+	@golangci-lint run
 
 .PHONY: check-format
 check-format:
@@ -29,4 +32,8 @@ check: check-format lint
 .PHONY: start
 start:
 	@go run cmd/manager/main.go
+
+.PHONY: install
+install:
+	@go install cmd/manager/main.go
 
