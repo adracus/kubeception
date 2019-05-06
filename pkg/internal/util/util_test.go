@@ -1,7 +1,6 @@
 package util
 
 import (
-	"context"
 	"fmt"
 	"github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
 	mockmanager "github.com/adracus/kubeception/pkg/internal/mock/controller-runtime/manager"
@@ -91,20 +90,6 @@ var _ = Describe("Utils Suite", func() {
 		})
 	})
 
-	Describe("#ContextFromStopChannel", func() {
-		It("should create a context that is open as long as the stop channel is open", func() {
-			stopCh := make(chan struct{})
-
-			ctx := ContextFromStopChannel(stopCh)
-
-			Expect(ctx.Err()).To(BeNil())
-
-			close(stopCh)
-
-			Expect(ctx.Err()).To(Equal(context.Canceled))
-		})
-	})
-
 	Context("AddToManagerBuilder", func() {
 		Describe("#NewAddToManagerBuilder", func() {
 			It("should create a new AddToManagerBuilder that contains the given functions", func() {
@@ -132,6 +117,7 @@ var _ = Describe("Utils Suite", func() {
 				gomock.InOrder(
 					f1.EXPECT().Do(mgr),
 					f2.EXPECT().Do(mgr),
+					f3.EXPECT().Do(mgr),
 				)
 
 				addToManagerBuilder := NewAddToManagerBuilder(f1.Do, f2.Do)

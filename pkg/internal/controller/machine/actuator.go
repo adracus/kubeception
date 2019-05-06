@@ -6,8 +6,8 @@ import (
 	"github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
 	"github.com/adracus/kubeception/pkg/internal/controller"
 	kubeceptioncluster "github.com/adracus/kubeception/pkg/internal/controller/cluster"
-	"github.com/adracus/kubeception/pkg/internal/util"
 	"github.com/adracus/kubeception/pkg/internal/util/pointers"
+	kubeceptionutil "github.com/adracus/kubeception/pkg/util"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -27,7 +27,7 @@ type actuator struct {
 }
 
 func (a *actuator) InjectStopChannel(stopChan <-chan struct{}) error {
-	a.ctx = util.ContextFromStopChannel(stopChan)
+	a.ctx = kubeceptionutil.ContextFromStopChannel(stopChan)
 	return nil
 }
 

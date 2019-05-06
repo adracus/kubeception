@@ -7,6 +7,7 @@ import (
 	"github.com/adracus/kubeception/pkg/internal/controller"
 	"github.com/adracus/kubeception/pkg/internal/util"
 	"github.com/adracus/kubeception/pkg/internal/util/pointers"
+	kubeceptionutil "github.com/adracus/kubeception/pkg/util"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -57,7 +58,7 @@ func (a *actuator) InjectClient(c client.Client) error {
 }
 
 func (a *actuator) InjectStopChannel(stopCh <-chan struct{}) error {
-	a.ctx = util.ContextFromStopChannel(stopCh)
+	a.ctx = kubeceptionutil.ContextFromStopChannel(stopCh)
 	return nil
 }
 

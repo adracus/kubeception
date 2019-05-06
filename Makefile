@@ -1,5 +1,5 @@
 .PHONY: all
-all: check test install
+all: verify install
 
 .PHONY: install-requirements
 install-requirements:
@@ -29,6 +29,9 @@ check-format:
 
 .PHONY: check
 check: check-format lint
+
+.PHONY: verify
+verify: check test
 
 .PHONY: start
 start:
