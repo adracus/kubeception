@@ -1,5 +1,9 @@
 kubeception
 ===========
+[![Go Report Card](https://goreportcard.com/badge/github.com/adracus/kubeception)](https://goreportcard.com/report/github.com/adracus/kubeception)
+[![Documentation](https://godoc.org/github.com/adracus/kubeception?status.svg)](http://godoc.org/github.com/adracus/kubeception)
+![GitHub](https://img.shields.io/github/license/adracus/kubeception.svg)
+[![Build Status](https://travis-ci.org/adracus/kubeception.svg?branch=master)](https://travis-ci.org/adracus/kubeception)
 
 kubeception is an implementation of the [Kubernetes Cluster API](https://github.com/kubernetes-sigs/cluster-api)
 using Kubernetes itself as environment.
