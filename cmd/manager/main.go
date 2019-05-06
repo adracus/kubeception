@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/adracus/kubeception/pkg/apis/kubeception"
+	"github.com/adracus/kubeception/pkg/apis/kubeception/install"
 	"github.com/adracus/kubeception/pkg/controller"
 	"github.com/go-logr/logr"
 	"k8s.io/klog"
@@ -34,13 +34,11 @@ func main() {
 		logErrorAndExit(logger, err, "Could not initialize manager")
 	}
 
-	if err := kubeception.AddToScheme(mgr.GetScheme()); err != nil {
-		logErrorAndExit(logger, err, "Could not modify scheme")
-	}
-
 	if err := clusterapis.AddToScheme(mgr.GetScheme()); err != nil {
 		logErrorAndExit(logger, err, "Could not modify scheme")
 	}
+
+	install.Install(mgr.GetScheme())
 
 	if err := clustercontroller.AddToManager(mgr); err != nil {
 		logErrorAndExit(logger, err, "Could add cluster-api controllers")

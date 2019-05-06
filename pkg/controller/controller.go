@@ -12,5 +12,6 @@ var (
 		machine.AddToManager,
 	)
 
+	// AddToManager adds all kubeception controllers to the given manager.
 	AddToManager = addToManagerBuilder.AddToManager
 )

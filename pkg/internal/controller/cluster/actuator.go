@@ -35,10 +35,8 @@ const (
 	SchedulerDeploymentName = "scheduler"
 )
 
-func NewActuator() cluster.Actuator {
-	return &actuator{}
-}
-
+// NewActuatorWithDeps instantiates a new actuator with the dependencies that are usually injected.
+// TODO: Remove this constructor as soon as the cluster api supports proper injection on the actuators.
 func NewActuatorWithDeps(ctx context.Context, client client.Client, scheme *runtime.Scheme) cluster.Actuator {
 	return &actuator{
 		ctx:    ctx,
@@ -228,7 +226,7 @@ func (a *actuator) reconcileAPIServer(ctx context.Context, cluster *clusterv1alp
 					Containers: []corev1.Container{
 						{
 							Name:  "kube-apiserver",
-							Image: util.KubernetesImageForConfig(config),
+							Image: util.HyperkubeImageForConfig(config),
 							Command: []string{
 								"/hyperkube",
 								"apiserver",
@@ -341,7 +339,7 @@ func (a *actuator) reconcileControllerManager(ctx context.Context, cluster *clus
 					Containers: []corev1.Container{
 						{
 							Name:  "controller-manager",
-							Image: util.KubernetesImageForConfig(config),
+							Image: util.HyperkubeImageForConfig(config),
 							Command: []string{
 								"/hyperkube",
 								"controller-manager",
@@ -418,7 +416,7 @@ func (a *actuator) reconcileScheduler(ctx context.Context, cluster *clusterv1alp
 					Containers: []corev1.Container{
 						{
 							Name:  "scheduler",
-							Image: util.KubernetesImageForConfig(config),
+							Image: util.HyperkubeImageForConfig(config),
 							Command: []string{
 								"/hyperkube",
 								"scheduler",

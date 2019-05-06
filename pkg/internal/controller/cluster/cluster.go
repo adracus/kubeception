@@ -14,6 +14,7 @@ const (
 	KubeconfigField = "kubeconfig"
 )
 
+// ConfigFromCluster tries to decode a ClusterConfig from the given cluster.
 func ConfigFromCluster(cluster *clusterv1alpha1.Cluster) (*kubeceptionv1alpha1.ClusterConfig, error) {
 	config := &kubeceptionv1alpha1.ClusterConfig{}
 	if _, _, err := scheme.Decoder.Decode(cluster.Spec.ProviderSpec.Value.Raw, nil, config); err != nil {
@@ -23,6 +24,7 @@ func ConfigFromCluster(cluster *clusterv1alpha1.Cluster) (*kubeceptionv1alpha1.C
 	return config, nil
 }
 
+// ReadKubeconfigSecret reads the clientcmdapi.Config from the given secret.
 func ReadKubeconfigSecret(secret *corev1.Secret) (*clientcmdapi.Config, error) {
 	if secret.Data == nil {
 		return nil, fmt.Errorf("secret does not contain data")
@@ -39,6 +41,7 @@ func ReadKubeconfigSecret(secret *corev1.Secret) (*clientcmdapi.Config, error) {
 	return clientcmd.Load(data)
 }
 
+// UpdateKubeconfigSecret updates the given secret to contain the given clientcmdapi.Config at the data KubeconfigField.
 func UpdateKubeconfigSecret(secret *corev1.Secret, config *clientcmdapi.Config) error {
 	data, err := clientcmd.Write(*config)
 	if err != nil {

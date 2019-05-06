@@ -6,6 +6,7 @@ import (
 	clusterv1alpha1 "sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
 )
 
+// ConfigFromMachine decodes the MachineConfig from the given Machine.
 func ConfigFromMachine(cluster *clusterv1alpha1.Machine) (*kubeceptionv1alpha1.MachineConfig, error) {
 	config := &kubeceptionv1alpha1.MachineConfig{}
 	if _, _, err := scheme.Decoder.Decode(cluster.Spec.ProviderSpec.Value.Raw, nil, config); err != nil {
