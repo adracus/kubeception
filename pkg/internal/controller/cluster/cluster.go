@@ -2,8 +2,8 @@ package cluster
 
 import (
 	"fmt"
-	kubeceptionv1alpha1 "github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
-	"github.com/adracus/kubeception/pkg/internal/scheme"
+	kubeceptionv1alpha1 "kubeception.cloud/kubeception/pkg/apis/kubeception/v1alpha1"
+	"kubeception.cloud/kubeception/pkg/internal/scheme"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/client-go/tools/clientcmd"
 	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"

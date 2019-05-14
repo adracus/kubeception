@@ -3,9 +3,9 @@ package app
 import (
 	"context"
 	"flag"
-	"github.com/adracus/kubeception/pkg/apis/kubeception/install"
-	"github.com/adracus/kubeception/pkg/controller"
-	"github.com/adracus/kubeception/pkg/util"
+	"kubeception.cloud/kubeception/pkg/apis/kubeception/install"
+	"kubeception.cloud/kubeception/pkg/controller"
+	"kubeception.cloud/kubeception/pkg/util"
 	"github.com/go-logr/logr"
 	"github.com/spf13/cobra"
 	clusterapis "sigs.k8s.io/cluster-api/pkg/apis"

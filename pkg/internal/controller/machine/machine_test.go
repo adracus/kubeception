@@ -1,8 +1,8 @@
 package machine
 
 import (
-	"github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
-	"github.com/adracus/kubeception/pkg/internal/scheme"
+	"kubeception.cloud/kubeception/pkg/apis/kubeception/v1alpha1"
+	"kubeception.cloud/kubeception/pkg/internal/scheme"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"k8s.io/apimachinery/pkg/runtime"

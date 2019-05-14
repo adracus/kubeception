@@ -2,9 +2,9 @@ package util
 
 import (
 	"fmt"
-	"github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
-	mockmanager "github.com/adracus/kubeception/pkg/internal/mock/controller-runtime/manager"
-	mockutil "github.com/adracus/kubeception/pkg/internal/mock/kubeception/intern/util"
+	"kubeception.cloud/kubeception/pkg/apis/kubeception/v1alpha1"
+	mockmanager "kubeception.cloud/kubeception/pkg/internal/mock/controller-runtime/manager"
+	mockutil "kubeception.cloud/kubeception/pkg/internal/mock/kubeception/intern/util"
 	"github.com/golang/mock/gomock"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

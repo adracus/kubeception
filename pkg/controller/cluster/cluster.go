@@ -2,7 +2,7 @@ package cluster
 
 import (
 	"context"
-	clusterinternal "github.com/adracus/kubeception/pkg/internal/controller/cluster"
+	clusterinternal "kubeception.cloud/kubeception/pkg/internal/controller/cluster"
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/cluster-api/pkg/controller/cluster"
 	"sigs.k8s.io/controller-runtime/pkg/client"

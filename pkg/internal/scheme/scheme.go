@@ -1,7 +1,7 @@
 package scheme
 
 import (
-	"github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
+	"kubeception.cloud/kubeception/pkg/apis/kubeception/v1alpha1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/serializer"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"

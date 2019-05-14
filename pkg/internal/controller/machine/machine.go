@@ -1,8 +1,8 @@
 package machine
 
 import (
-	kubeceptionv1alpha1 "github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
-	"github.com/adracus/kubeception/pkg/internal/scheme"
+	kubeceptionv1alpha1 "kubeception.cloud/kubeception/pkg/apis/kubeception/v1alpha1"
+	"kubeception.cloud/kubeception/pkg/internal/scheme"
 	clusterv1alpha1 "sigs.k8s.io/cluster-api/pkg/apis/cluster/v1alpha1"
 )
 

@@ -3,4 +3,4 @@
 
 //go:generate ../../../hack/generate-code
 
-package kubeception // import "github.com/adracus/kubeception/pkg/apis/kubeception"
+package kubeception // import "kubeception.cloud/kubeception/pkg/apis/kubeception"

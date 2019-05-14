@@ -3,7 +3,7 @@ package util
 import (
 	"context"
 	"fmt"
-	"github.com/adracus/kubeception/pkg/apis/kubeception/v1alpha1"
+	"kubeception.cloud/kubeception/pkg/apis/kubeception/v1alpha1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/meta"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

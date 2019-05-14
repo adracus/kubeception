@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"github.com/adracus/kubeception/pkg/controller/cluster"
-	"github.com/adracus/kubeception/pkg/controller/machine"
-	"github.com/adracus/kubeception/pkg/internal/util"
+	"kubeception.cloud/kubeception/pkg/controller/cluster"
+	"kubeception.cloud/kubeception/pkg/controller/machine"
+	"kubeception.cloud/kubeception/pkg/internal/util"
 )
 
 var (

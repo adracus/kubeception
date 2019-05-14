@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"github.com/adracus/kubeception/cmd/manager/app"
-	"github.com/adracus/kubeception/pkg/util"
+	"kubeception.cloud/kubeception/cmd/manager/app"
+	"kubeception.cloud/kubeception/pkg/util"
 	"k8s.io/klog"
 	"sigs.k8s.io/controller-runtime/pkg/runtime/log"
 	"sigs.k8s.io/controller-runtime/pkg/runtime/signals"
