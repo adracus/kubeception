@@ -1,13 +1,5 @@
-.PHONY: ci
-ci: install-requirements verify
-
 .PHONY: all
-all: ci install
-
-.PHONY: install-requirements
-install-requirements:
-	@cd tools && GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@692dacb773b703162c091c2d8c59f9cd2d6801db; cd -
-	@cd tools && GO111MODULE=on go get github.com/golang/mock/mockgen@v1.3.0; cd -
+all: verify generate install
 
 .PHONY: generate
 generate:
@@ -23,7 +15,7 @@ test:
 
 .PHONY: lint
 lint:
-	@golangci-lint run
+	@go run github.com/golangci/golangci-lint/cmd/golangci-lint run
 
 .PHONY: check-format
 check-format:

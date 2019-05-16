@@ -1,4 +1,4 @@
-//go:generate mockgen -package=util -destination=zz_funcs.go kubeception.cloud/kubeception/pkg/internal/mock/kubeception/intern/util AddToManager
+//go:generate go run github.com/golang/mock/mockgen -package=util -destination=zz_funcs.go kubeception.cloud/kubeception/pkg/internal/mock/kubeception/intern/util AddToManager
 
 package util
 
