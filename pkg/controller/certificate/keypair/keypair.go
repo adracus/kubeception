@@ -61,12 +61,25 @@ func (r *reconciler) Reconcile(req reconcile.Request) (reconcile.Result, error) 
 	})
 }
 
-func (r *reconciler) reconcile(ctx context.Context, log logr.Logger, keyPair *v1alpha1.KeyPair) error {
+func (r *reconciler) reconcileKeyPairData(ctx context.Context, log logr.Logger, keyPair *v1alpha1.KeyPair) ([]byte, []byte, error) {
 	if keyPair.Spec.Secrets == v1alpha1.SecretsSelfProvisioned {
-		log.Info("Secret is self provisioned, skipping")
-		return nil
+		return r.readSelfProvisionedKeyPairData(ctx, log, keyPair)
+	}
+	return r.createOrUpdateKeyPairData(ctx, log, keyPair)
+}
+
+func (r *reconciler) readSelfProvisionedKeyPairData(ctx context.Context, log logr.Logger, keyPair *v1alpha1.KeyPair) ([]byte, []byte, error) {
+	privateKey, err := GetKeyPairFromSecret(ctx, r.Client, util.KeyFromObject(keyPair))
+	if err != nil {
+		r.recorder.Eventf(keyPair, corev1.EventTypeWarning, v1alpha1.EventInvalidData, "Could not read key pair: %v", err)
+		return nil, nil, err
 	}
 
+	privateKeyData, publicKeyData := EncodeKeyPair(privateKey)
+	return privateKeyData, publicKeyData, nil
+}
+
+func (r *reconciler) createOrUpdateKeyPairData(ctx context.Context, log logr.Logger, keyPair *v1alpha1.KeyPair) ([]byte, []byte, error) {
 	var privateKeyData, publicKeyData []byte
 	secret := &corev1.Secret{ObjectMeta: util.ObjectMeta(keyPair.Namespace, keyPair.Name)}
 	_, err := controllerruntime.CreateOrUpdate(ctx, r.Client, secret, func() error {
@@ -88,6 +101,14 @@ func (r *reconciler) reconcile(ctx context.Context, log logr.Logger, keyPair *v1
 		UpdateSecret(secret, privateKeyData, publicKeyData)
 		return nil
 	})
+	if err != nil {
+		return nil, nil, err
+	}
+	return privateKeyData, publicKeyData, nil
+}
+
+func (r *reconciler) reconcile(ctx context.Context, log logr.Logger, keyPair *v1alpha1.KeyPair) error {
+	privateKeyData, publicKeyData, err := r.reconcileKeyPairData(ctx, log, keyPair)
 	if err != nil {
 		return err
 	}

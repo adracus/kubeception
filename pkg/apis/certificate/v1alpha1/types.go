@@ -27,6 +27,7 @@ const (
 	EventGeneratingKey            = "GeneratingKey"
 	EventGeneratingCertificate    = "GeneratingCertificate"
 	EventErrorGenerateCertificate = "GenerateCertificateError"
+	EventInvalidData              = "InvalidData"
 )
 
 // +kubebuilder:object:root=true
