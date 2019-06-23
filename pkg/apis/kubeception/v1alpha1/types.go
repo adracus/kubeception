@@ -1,6 +1,15 @@
 package v1alpha1
 
-import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+import (
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"kubeception.cloud/kubeception/pkg/util"
+)
+
+var (
+	ClusterConfigKind = util.MustTypeToKind(&ClusterConfig{})
+
+	MachineConfigKind = util.MustTypeToKind(&MachineConfig{})
+)
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 

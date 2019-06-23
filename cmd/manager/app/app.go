@@ -3,11 +3,14 @@ package app
 import (
 	"context"
 	"flag"
-	"kubeception.cloud/kubeception/pkg/apis/kubeception/install"
-	"kubeception.cloud/kubeception/pkg/controller"
-	"kubeception.cloud/kubeception/pkg/util"
+
+	certificateinstall "kubeception.cloud/kubeception/pkg/apis/certificate/install"
+
 	"github.com/go-logr/logr"
 	"github.com/spf13/cobra"
+	kubeceptioninstall "kubeception.cloud/kubeception/pkg/apis/kubeception/install"
+	"kubeception.cloud/kubeception/pkg/controller"
+	"kubeception.cloud/kubeception/pkg/util"
 	clusterapis "sigs.k8s.io/cluster-api/pkg/apis"
 	clustercontroller "sigs.k8s.io/cluster-api/pkg/controller"
 	"sigs.k8s.io/controller-runtime/pkg/client/config"
@@ -35,7 +38,8 @@ func NewManagerCommand(ctx context.Context, logger logr.Logger) *cobra.Command {
 				util.LogErrorAndExit(logger, err, "Could not modify scheme")
 			}
 
-			install.Install(mgr.GetScheme())
+			kubeceptioninstall.Install(mgr.GetScheme())
+			certificateinstall.Install(mgr.GetScheme())
 
 			if err := clustercontroller.AddToManager(mgr); err != nil {
 				util.LogErrorAndExit(logger, err, "Could add cluster-api controllers")

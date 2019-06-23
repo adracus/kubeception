@@ -1,8 +1,13 @@
+export GO111MODULE := on
+
 .PHONY: all
 all: verify generate install
 
+.PHONY: vendor
+	@go mod vendor
+
 .PHONY: generate
-generate:
+generate: vendor
 	@go generate ./pkg/...
 
 .PHONY: format

@@ -1,0 +1,7 @@
+---
+apiVersion: certificate.kubeception.cloud/v1alpha1
+kind: KeyPair
+metadata:
+  name: keypair
+spec: {}
+

@@ -2,9 +2,10 @@ package main
 
 import (
 	"flag"
+
+	"k8s.io/klog"
 	"kubeception.cloud/kubeception/cmd/manager/app"
 	"kubeception.cloud/kubeception/pkg/util"
-	"k8s.io/klog"
 	"sigs.k8s.io/controller-runtime/pkg/runtime/log"
 	"sigs.k8s.io/controller-runtime/pkg/runtime/signals"
 )
